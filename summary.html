@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Food Journal</title>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="stylesheet" href="/lib/pico.css">
+        <link rel="stylesheet" href="/lib/pico.colors.css">
+        <link rel="stylesheet" href="/styles/site.css">
+        <meta name="theme-color" content="#000000">
+    </head>
+    <body>
+        <div class="pinned-alert-container" id="alerts-container"></div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><strong>Food Journal</strong></li>
+                </ul>
+                <ul>
+                    <li><a href="/index.html">Track Choices</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/summary.html">Choice Summary</a></li>
+                </ul>
+            </nav>
+            <article>
+                <h1>Choice Summary</h1>
+                <section>
+                    <canvas id="healthChart" width="400" height="200"></canvas>
+                </section>
+                <section>
+                    <details>
+                    <summary role="button">Records</summary>
+                    <p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Date</th>
+                                    <th>Food Choice</th>
+                                    <th>Health Score</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="summary-tbody">
+                                
+                            </tbody>
+                        </table>
+                    </p>
+                    </details>
+                </section>
+            </article>
+        </div>
+        <script src="/lib/chart.js"></script>
+        <script src="/lib/idb.js"></script>
+        <script src="/src/FoodChoicesRepo.js"></script>
+        <script src="/src/Alerts.js"></script>
+        <script src="/src/summary.js"></script>
+    </body>
+</html>

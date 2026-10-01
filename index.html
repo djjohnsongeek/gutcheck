@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Food Journal</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="/lib/pico.css">
+        <link rel="stylesheet" href="/lib/pico.colors.css">
+        <link rel="stylesheet" href="/styles/site.css">
+        <meta name="theme-color" content="#000000">
+    </head>
+    <body>
+        <div class="pinned-alert-container" id="alerts-container"></div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><strong>Food Journal</strong></li>
+                </ul>
+                <ul>
+                    <li><a href="/index.html">Track Choices</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/summary.html">Choice Summary</a></li>
+                </ul>
+            </nav>
+            <article>
+                <h1>Choice Tracking</h1>
+                <form id="food-choice-form">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date"/>
+                    <label for="food-item">Food Item</label>
+                    <input type="text" id="food-item" name="foodItem" placeholder="Apple, Banana, Chocolate ..."/>
+                    <fieldset>
+                        <label for="health-score">Health Score</label>
+                        <select id="health-score" name="healthScore">
+                            <option>Healthy</option>
+                            <option>Mostly Healthy</option>
+                            <option>Borderline</option>
+                            <option>Mostly Unhealthy</option>
+                            <option>Unhealthy</option>  
+                        </select>
+                    </fieldset>
+                    <button type="button" id="save-button">Save</button>
+                </form>
+            </article>
+        </div>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('Service Worker Registered'));
+            }
+        </script>
+        <script src="/lib/idb.js"></script>
+        <script src="/src/FoodChoicesRepo.js"></script>
+        <script src="/src/Alerts.js"></script>
+        <script src="/src/index.js"></script>
+    </body>
+</html>

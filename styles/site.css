@@ -1,0 +1,10 @@
+.pinned-alert-container {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  z-index: 1000; /* Keeps it layered on top of other content */
+  display: flex;
+  justify-content: center;
+}
