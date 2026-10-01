@@ -1,10 +1,10 @@
 {
-    "name": "Bare Bones PWA",
-    "short_name": "PWA",
+    "name": "Gut Check",
+    "short_name": "Gut Check",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "background_color": "#13161E",
+    "theme_color": "#525F7A",
     "icons": [
         {
             "src": "img/icon192.png",
