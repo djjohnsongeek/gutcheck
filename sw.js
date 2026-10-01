@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cache-v000020';
+const CACHE_NAME = 'pwa-cache-v000021';
 const urlsToCache = [
     './',
     './favicon.ico',
@@ -16,6 +16,7 @@ const urlsToCache = [
     './src/index.js',
     './src/summary.js',
     "./src/Alerts.js",
+    "./src/UserSettings.js"
 ];
 
 self.addEventListener('install', event => {

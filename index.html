@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,16 +22,13 @@
                 </ul>
                 <ul>
                     <li>
-                        🍎
-                        <a href="index.html">
-                            Track Food
-                        </a>
-                </li>
-                </ul>
-                <ul>
+                        🍎 <a class="contrast" href="index.html">Track Food</a>
+                    </li>
                     <li>
-                        📊
-                        <a href="summary.html">Summary</a>
+                        📊 <a href="summary.html">Summary</a>
+                    </li>
+                    <li>
+                        <button id="theme-toggle-btn">☀️</button>
                     </li>
                 </ul>
             </nav>
@@ -67,6 +64,7 @@
         <script src="lib/idb.js"></script>
         <script src="src/FoodChoicesRepo.js"></script>
         <script src="src/Alerts.js"></script>
+        <script src="src/UserSettings.js"></script>
         <script src="src/index.js"></script>
     </body>
     <footer>

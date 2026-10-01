@@ -6,7 +6,10 @@ const CHART_CATEGORIES = [
     { name: "Mostly Healthy", color: "#A5D601" },
     { name: "Healthy", color: "#398712" }
 ];
+
 document.addEventListener("DOMContentLoaded", async () => {
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
+    const userSettings = new UserSettings(themeToggleBtn);
     loadSummary();
 });
 
