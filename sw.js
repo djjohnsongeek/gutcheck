@@ -1,10 +1,13 @@
-const CACHE_NAME = 'pwa-cache-v000016';
+const CACHE_NAME = 'pwa-cache-v000017';
 const urlsToCache = [
     '/',
+    '/favicon.ico',
     '/index.html',
     '/summary.html',
     '/manifest.json',
     '/styles/site.css',
+    '/img/icon192.png',
+    '/img/icon512.png',
     '/lib/idb.js',
     "/lib/chart.js",
     '/lib/pico.css',
