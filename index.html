@@ -22,17 +22,17 @@
                 </ul>
                 <ul>
                     <li>
-                        <a class="contrast" href="index.html">
+                        <button onclick="window.location.href='index.html'">
                             🍎 <span class="hide-on-mobile">Track Food</span>
-                        </a>
+                        </button>
                     </li>
                     <li>
-                        <a href="summary.html">
+                        <button class="outline" onclick="window.location.href='summary.html'">
                             📊 <span class="hide-on-mobile">Summary</span>
-                        </a>
+                        </button>
                     </li>
                     <li>
-                        <button id="theme-toggle-btn">☀️</button>
+                        <button class="contrast" id="theme-toggle-btn">☀️</button>
                     </li>
                 </ul>
             </nav>
@@ -42,7 +42,7 @@
                     <label for="date">Date</label>
                     <input type="date" id="date" name="date"/>
                     <label for="food-item">Food Item</label>
-                    <input type="text" id="food-item" name="foodItem" placeholder="Apple, Banana, Chocolate ..."/>
+                    <input type="text" id="food-item" name="foodItem"/>
                     <fieldset>
                         <label for="health-score">Health Score</label>
                         <select id="health-score" name="healthScore">
@@ -54,7 +54,7 @@
                         </select>
                     </fieldset>
                     <button type="button" id="save-button">
-                        💾 Save
+                        Save
                     </button>
                 </form>
             </article>
