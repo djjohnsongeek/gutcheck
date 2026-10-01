@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cache-v000017';
+const CACHE_NAME = 'pwa-cache-v000018';
 const urlsToCache = [
     '/',
     '/favicon.ico',
