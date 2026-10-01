@@ -14,7 +14,7 @@ async function loadSummary() {
     console.log('Loading summary...');
     try {
         const foodChoicesRepo = new FoodChoicesRepo();
-        const choices = await foodChoicesRepo.getAllFoodChoices();
+        const choices = await foodChoicesRepo.getTwoWeeksOfFoodChoices();
         const groupedChoices = groupChoices(choices);
 
         console.log(choices);

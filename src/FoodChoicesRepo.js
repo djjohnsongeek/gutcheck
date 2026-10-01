@@ -34,6 +34,23 @@ class FoodChoicesRepo {
         return db.getAllFromIndex(STORE_NAME, 'date');
     }
 
+    async getTwoWeeksOfFoodChoices() {
+        const db = await this.dbPromise;
+
+        const toDateKey = (date) =>
+            `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+        const end = new Date();
+        const start = new Date();
+        start.setDate(end.getDate() - 13); // today plus the previous 13 days
+
+        return db.getAllFromIndex(
+            STORE_NAME,
+            'date',
+            IDBKeyRange.bound(toDateKey(start), toDateKey(end))
+        );
+    }
+
     async deleteFoodChoice(id) {
         console.log(`Deleting food choice with id: ${id}`);
         const db = await this.dbPromise;
