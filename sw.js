@@ -1,21 +1,21 @@
-const CACHE_NAME = 'pwa-cache-v000018';
+const CACHE_NAME = 'pwa-cache-v000019';
 const urlsToCache = [
-    '/',
-    '/favicon.ico',
-    '/index.html',
-    '/summary.html',
-    '/manifest.json',
-    '/styles/site.css',
-    '/img/icon192.png',
-    '/img/icon512.png',
-    '/lib/idb.js',
-    "/lib/chart.js",
-    '/lib/pico.css',
-    '/lib/pico.colors.css',
-    '/src/FoodChoicesRepo.js',
-    '/src/index.js',
-    '/src/summary.js',
-    "/src/Alerts.js",
+    './',
+    './favicon.ico',
+    './index.html',
+    './summary.html',
+    './manifest.json',
+    './styles/site.css',
+    './img/icon192.png',
+    './img/icon512.png',
+    './lib/idb.js',
+    "./lib/chart.js",
+    './lib/pico.css',
+    './lib/pico.colors.css',
+    './src/FoodChoicesRepo.js',
+    './src/index.js',
+    './src/summary.js',
+    "./src/Alerts.js",
 ];
 
 self.addEventListener('install', event => {
