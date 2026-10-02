@@ -38,16 +38,19 @@ function renderTable(choices) {
 
     // Check if there are no food choices and display a message if so.
     if (choices.length === 0) {
-        summaryTbody.innerHTML = '<tr><td colspan="5">No food choices found.</td></tr>';
+        summaryTbody.innerHTML = '<tr><td colspan="4">No food choices found.</td></tr>';
         return;
     }
 
     for (let choice of choices) {
         const row = document.createElement('tr');
+        const dateparts = choice.date.split("-");
+
+        const formattedDate = `${parseInt(dateparts[2])}/${parseInt(dateparts[1])}/${dateparts[0].substring(2)}`;
+
         row.innerHTML = `
-            <td>${choice.id}</td>
-            <td>${choice.date}</td>
-            <td>${choice.foodItem}</td>
+            <td>${formattedDate}</td>
+            <td>${choice.foodItem.substring(0, 8)}</td>
             <td>${choice.healthScore}</td>
             <td>
                 <button class="delete-button" data-id="${choice.id}">&#10060;</button>
