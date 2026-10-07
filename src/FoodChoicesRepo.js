@@ -41,16 +41,24 @@ class FoodChoicesRepo {
             `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 
         const end = new Date();
-        const start = new Date();
-        start.setDate(end.getDate() - 13); // today plus the previous 13 days
+        const start = new Date(end);
+        start.setDate(end.getDate() - 13);
 
-        return db.getAllFromIndex(
-            STORE_NAME,
-            'date',
-            IDBKeyRange.bound(toDateKey(start), toDateKey(end))
-        );
+        const range = IDBKeyRange.bound(toDateKey(start), toDateKey(end));
+        const transaction = db.transaction(STORE_NAME, 'readonly');
+        const index = transaction.store.index('date');
+        const choices = [];
+
+        let cursor = await index.openCursor(range, 'prev');
+        while (cursor) {
+            choices.push(cursor.value);
+            cursor = await cursor.continue();
+        }
+
+        await transaction.done;
+        return choices;
     }
-
+    
     async deleteFoodChoice(id) {
         console.log(`Deleting food choice with id: ${id}`);
         const db = await this.dbPromise;

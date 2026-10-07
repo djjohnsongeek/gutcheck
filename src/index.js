@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateInput = document.getElementById("date");
     const saveBtn = document.getElementById("save-button");
     const ALERTS_MANAGER = new Alerts("alerts-container");
-    
-    dateInput.valueAsDate = new Date();
     const userSettings = new UserSettings(themeToggleBtn);
+
+
+    setDateInput(dateInput);
 
     saveBtn.addEventListener("click", async () => {
         const foodChoiceForm = document.getElementById("food-choice-form");
@@ -26,3 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+function setDateInput(dateInput)
+{
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    dateInput.value = `${year}-${month}-${day}`;
+}
