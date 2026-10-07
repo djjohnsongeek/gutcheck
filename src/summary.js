@@ -42,7 +42,7 @@ function renderTable(choices) {
         const row = document.createElement('tr');
 
         const dateTime = new Date(Date.parse(choice.date));
-        const dayOfTheWeek = dateTime.toLocaleDateString('en-US', { weekday: 'short' });
+        const dayOfTheWeek = dateTime.toLocaleDateString('en-US', { weekday: 'short' }) + ".";
         const color = getChoiceColor(choice);
 
         row.innerHTML = `
