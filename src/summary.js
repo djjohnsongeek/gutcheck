@@ -14,14 +14,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadSummary() {
-    console.log('Loading summary...');
     try {
         const foodChoicesRepo = new FoodChoicesRepo();
         const choices = await foodChoicesRepo.getTwoWeeksOfFoodChoices();
         const groupedChoices = groupChoices(choices);
-
-        console.log(choices);
-
         renderChart(groupedChoices);
         renderTable(choices);
         addDeleteButtonListeners();
@@ -44,20 +40,37 @@ function renderTable(choices) {
 
     for (let choice of choices) {
         const row = document.createElement('tr');
-        const dateparts = choice.date.split("-");
 
-        const formattedDate = `${parseInt(dateparts[2])}/${parseInt(dateparts[1])}/${dateparts[0].substring(2)}`;
+        const dateTime = new Date(Date.parse(choice.date));
+        const dayOfTheWeek = dateTime.toLocaleDateString('en-US', { weekday: 'short' });
+        const color = getChoiceColor(choice);
 
         row.innerHTML = `
-            <td>${formattedDate}</td>
-            <td>${choice.foodItem.substring(0, 8)}</td>
-            <td>${choice.healthScore}</td>
+            <td>${dayOfTheWeek}</td>
             <td>
-                <button class="delete-button" data-id="${choice.id}">&#10060;</button>
+                <kbd style="background-color: ${color};">${choice.foodItem.substring(0, 10)}...</kbd>
+            </td>
+            <td>
+                <button class="delete-button table-btn" data-id="${choice.id}">&#10060;</button>
             </td>
         `;
+
+        //                 <button class="view-button table-btn data-id="${choice.id}">&#128065;</button>
         summaryTbody.appendChild(row);
     }
+}
+
+function getChoiceColor(choice)
+{
+    for (let category of CHART_CATEGORIES)
+    {
+        if (category.name === choice.healthScore)
+        {
+            return category.color;
+        }
+    }
+
+    return "#454566";
 }
 
 function addDeleteButtonListeners() {
