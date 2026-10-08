@@ -64,4 +64,9 @@ class FoodChoicesRepo {
         const db = await this.dbPromise;
         return db.delete(STORE_NAME, Number(id));
     }
+
+    async getFoodChoiceById(id) {
+        const db = await this.dbPromise;
+        return db.get(STORE_NAME, Number(id));
+    }
 }

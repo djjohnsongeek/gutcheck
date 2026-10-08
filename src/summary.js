@@ -1,4 +1,5 @@
 const ALERTS_MANAGER = new Alerts("alerts-container");
+
 const CHART_CATEGORIES = [
     { name: "Unhealthy", color: "#D93526" },
     { name: "Mostly Unhealthy", color: "#FF9500" },
@@ -21,6 +22,8 @@ async function loadSummary() {
         renderChart(groupedChoices);
         renderTable(choices);
         addDeleteButtonListeners();
+        addViewButtonListeners();
+        addModalCloseListener();
     }
     catch (error) {
         console.error('Failed to retrieve food choices:', error);
@@ -51,11 +54,10 @@ function renderTable(choices) {
                 <kbd style="background-color: ${color};">${choice.foodItem.substring(0, 10)}...</kbd>
             </td>
             <td>
-                <button class="delete-button table-btn" data-id="${choice.id}">&#10060;</button>
+                <button type="button" class="view-button table-btn" data-id="${choice.id}">👁️</button>
+                <button type="button" class="delete-button table-btn" data-id="${choice.id}">❌</button>
             </td>
-        `;
-
-        //                 <button class="view-button table-btn data-id="${choice.id}">&#128065;</button>
+        `;           
         summaryTbody.appendChild(row);
     }
 }
@@ -91,6 +93,45 @@ function addDeleteButtonListeners() {
             }
         });
     }
+}
+
+function addViewButtonListeners() {
+    const viewbtns = document.getElementsByClassName("view-button");
+    for (const btn of viewbtns)
+    {
+        btn.addEventListener("click", async (event) => {
+            const id = event.target.dataset.id;
+            const foodChoicesRepo = new FoodChoicesRepo();
+            try {
+                const choice = await foodChoicesRepo.getFoodChoiceById(id);
+                if (choice) {
+                    setChoiceViewModalValues(choice);
+                    document.querySelector('dialog').showModal();
+                }
+            }
+            catch (error) {
+                console.error('Failed to fetch food choice details:', error);
+                ALERTS_MANAGER.addAlert('Failed to fetch food choice details.', 'error');
+            }
+        });
+    }
+}
+
+function addModalCloseListener() {
+    const closeBtn = document.getElementById('modal-close-btn');
+    closeBtn.addEventListener('click', () => {
+        document.querySelector('dialog').close();
+    });
+}
+
+function setChoiceViewModalValues(choice)
+{
+
+    const formattedDate = new Date(choice.date).toDateString();
+
+    document.getElementById('modal-date-input').value = formattedDate;
+    document.getElementById('modal-food-input').value = choice.foodItem;
+    document.getElementById('modal-health-input').value = choice.healthScore;
 }
 
 function renderChart(rawData)

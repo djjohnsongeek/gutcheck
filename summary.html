@@ -61,23 +61,29 @@
                     </details>
                 </section>
             </article>
-            <dialog open>
+            <!-- Modal for viewing food choice details -->
+            <dialog>
                 <article>
-                    <h2 id="modal-title">Food Choice Details</h2>
-                    <p>
-                    Thank you for signing up for a membership!
-                    Please review the membership details below:
-                    </p>
-                    <ul>
-                    <li>Membership: Individual</li>
-                    <li>Price: $10</li>
-                    </ul>
-                    <footer>
-                    <button class="secondary">
-                        Cancel
-                    </button>
-                    <button>Confirm</button>
-                    </footer>
+                    <header>
+                        <button aria-label="Close" rel="prev" id="modal-close-btn"></button>
+                        <p>
+                            <strong>📋 Food Choice Details</strong>
+                        </p>
+                    </header>
+                    <form>
+                        <fieldset role="group">
+                            <button style="width: 150px;" disabled>Date</button>
+                            <input id="modal-date-input" type="text" readonly>
+                        </fieldset>
+                        <fieldset role="group">
+                            <button style="width: 150px;" disabled>Food</button>
+                            <input id="modal-food-input" type="text" readonly>
+                        </fieldset>
+                        <fieldset role="group">
+                            <button style="width: 150px;" disabled>Health</button>
+                            <input id="modal-health-input" type="text" readonly>
+                        </fieldset>
+                    </form>
                 </article>
             </dialog>
         </div>
