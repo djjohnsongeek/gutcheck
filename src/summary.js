@@ -44,8 +44,8 @@ function renderTable(choices) {
     for (let choice of choices) {
         const row = document.createElement('tr');
 
-        const dateTime = new Date(Date.parse(choice.date));
-        const dayOfTheWeek = dateTime.toLocaleDateString('en-US', { weekday: 'short' }) + ".";
+        const dateTime = new Date(choice.date);
+        const dayOfTheWeek = dateTime.toDateString();
         const color = getChoiceColor(choice);
 
         row.innerHTML = `
@@ -126,9 +126,7 @@ function addModalCloseListener() {
 
 function setChoiceViewModalValues(choice)
 {
-
     const formattedDate = new Date(choice.date).toDateString();
-
     document.getElementById('modal-date-input').value = formattedDate;
     document.getElementById('modal-food-input').value = choice.foodItem;
     document.getElementById('modal-health-input').value = choice.healthScore;
