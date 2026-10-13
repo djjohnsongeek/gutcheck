@@ -43,9 +43,8 @@ function renderTable(choices) {
 
     for (let choice of choices) {
         const row = document.createElement('tr');
-
-        // Dates are stored as YYYY-MM-DD, so parse them as local calendar dates.
-        const dayOfTheWeek = parseDate(choice.date);
+        const date = parseDate(choice.date);
+        const dayOfTheWeek = date.toLocaleDateString('en-US', { weekday: 'short' });
         const color = getChoiceColor(choice);
 
         row.innerHTML = `
@@ -126,15 +125,15 @@ function addModalCloseListener() {
 
 function setChoiceViewModalValues(choice)
 {
-    const formattedDate = parseDate(choice.date);
-    document.getElementById('modal-date-input').value = formattedDate;
+    const date = parseDate(choice.date);
+    document.getElementById('modal-date-input').value = date.toDateString();
     document.getElementById('modal-food-input').value = choice.foodItem;
     document.getElementById('modal-health-input').value = choice.healthScore;
 }
 
 function parseDate(dateStr) {
     const [year, month, day] = dateStr.split('-').map(Number);
-    return new Date(year, month - 1, day).toDateString();
+    return new Date(year, month - 1, day);
 }
 
 function renderChart(rawData)
