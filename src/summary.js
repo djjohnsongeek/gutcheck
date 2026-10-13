@@ -44,8 +44,8 @@ function renderTable(choices) {
     for (let choice of choices) {
         const row = document.createElement('tr');
 
-        const dateTime = new Date(choice.date);
-        const dayOfTheWeek = dateTime.toDateString();
+        // Dates are stored as YYYY-MM-DD, so parse them as local calendar dates.
+        const dayOfTheWeek = parseDate(choice.date);
         const color = getChoiceColor(choice);
 
         row.innerHTML = `
@@ -126,18 +126,23 @@ function addModalCloseListener() {
 
 function setChoiceViewModalValues(choice)
 {
-    const formattedDate = new Date(choice.date).toDateString();
+    const formattedDate = parseDate(choice.date);
     document.getElementById('modal-date-input').value = formattedDate;
     document.getElementById('modal-food-input').value = choice.foodItem;
     document.getElementById('modal-health-input').value = choice.healthScore;
 }
 
+function parseDate(dateStr) {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(year, month - 1, day).toDateString();
+}
+
 function renderChart(rawData)
 {
-    // 3. Extract the dates (X-Axis labels)
+    // 1. Extract the dates (X-Axis labels)
     const dates = Object.keys(rawData); // ["2026-09-30", "2026-10-01"]
 
-    // 4. Build the datasets array required by Chart.js
+    // 2. Build the datasets array required by Chart.js
     const datasets = CHART_CATEGORIES.map(category => {
         return {
             label: category.name,
@@ -147,7 +152,7 @@ function renderChart(rawData)
         };
     });
 
-    // 5. Initialize and render the Chart.js instance
+    // 3. Initialize and render the Chart.js instance
     const ctx = document.getElementById('healthChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
